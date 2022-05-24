@@ -1,5 +1,6 @@
 package com.rizal.resone.kripto.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,13 +31,14 @@ public class KoinAdapter extends RecyclerView.Adapter<KoinAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KoinAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull KoinAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txtNamaCoinCard.setText(listKoin.get(position).getNama());
         holder.imgKoinCard.setImageResource(listKoin.get(position).getIcon());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ItemCoinActivity.class);
+                intent.putExtra("KOIN", listKoin.get(position));
                 view.getContext().startActivity(intent);
             }
         });
