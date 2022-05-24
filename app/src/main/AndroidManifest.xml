@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kripto">
         <activity
+            android:name=".ItemCoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListCoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUtama"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
