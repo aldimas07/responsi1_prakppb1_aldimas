@@ -1,11 +1,14 @@
 package com.rizal.resone.kripto.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.rizal.resone.kripto.R;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Koin {
+public class Koin implements Parcelable {
     private int icon;
     private String nama;
     private String deskripsi;
@@ -52,4 +55,43 @@ public class Koin {
     public void setSejarah(String sejarah) {
         this.sejarah = sejarah;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.icon);
+        dest.writeString(this.nama);
+        dest.writeString(this.deskripsi);
+        dest.writeString(this.sejarah);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.icon = source.readInt();
+        this.nama = source.readString();
+        this.deskripsi = source.readString();
+        this.sejarah = source.readString();
+    }
+
+    protected Koin(Parcel in) {
+        this.icon = in.readInt();
+        this.nama = in.readString();
+        this.deskripsi = in.readString();
+        this.sejarah = in.readString();
+    }
+
+    public static final Parcelable.Creator<Koin> CREATOR = new Parcelable.Creator<Koin>() {
+        @Override
+        public Koin createFromParcel(Parcel source) {
+            return new Koin(source);
+        }
+
+        @Override
+        public Koin[] newArray(int size) {
+            return new Koin[size];
+        }
+    };
 }
